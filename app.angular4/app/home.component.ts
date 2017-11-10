@@ -6,4 +6,5 @@
 })
 export class HomeComponent {
     title = 'Lucas';
+
 }

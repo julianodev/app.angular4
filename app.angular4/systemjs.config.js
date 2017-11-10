@@ -48,10 +48,7 @@
 
             // Third party libraries
             'tslib': 'https://unpkg.com/tslib@1.7.1',
-            'rxjs': 'https://unpkg.com/rxjs@5.0.1',
-
-            'plugins': './assets/js/plugins.min.js',
-            'template': './assets/js/app.min.js'
+            'rxjs': 'https://unpkg.com/rxjs@5.0.1'
         },
         packages: {
             app: {
@@ -65,4 +62,5 @@
             }
         }
     });
+
 })(this);

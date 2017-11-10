@@ -13,7 +13,7 @@
 <body>
 
     @RenderBody()
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-3.2.1.js"></script>
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en"></script>
     <script src="~/node_modules/core-js/client/shim.min.js"></script>
     <script src="~/node_modules/zone.js/dist/zone.js"></script>
@@ -21,12 +21,10 @@
     <script src="~/node_modules/systemjs/dist/system.src.js"></script>
     <script src="~/systemjs.config.js"></script>
     <script>
-
         async function loadPlugins() {
-
-            await System.import('plugins')
+            await $.getScript('assets/js/plugins.min.js')
                 .then(function () {
-                    console.log('script plugins was load');
+                    console.log('script plugins carregado com sucesso');
                 })
                 .catch(function (message) {
                     console.error(message);
@@ -34,30 +32,29 @@
         }
 
         function loadTemplate() {
-            System.import('template').then(function () {
-                console.log('script template was load');
+            $.getScript('assets/js/app.min.js').then(function () {
+                console.log('script template carregado com sucesso');
             }).catch(function (message) {
                 console.error(message);
             });
         }
 
         async function loadAngular() {
-            await System.import('assets/js/')
+            await System.import('app')
                 .then(function () {
-                    console.log('Angular was load');
+                    console.log('Angular carregado com sucesso');
                 })
                 .catch(function (message) {
                     console.error(message);
                 });
         }
 
-        loadAngular()
-            .then(function () {
-                loadPlugins()
-                    .then(function () {
-                        loadTemplate();
-                    });
+
+        loadAngular().then(function () {
+            loadPlugins().then(function () {
+                loadTemplate();
             });
+        });
     </script>
 
 
