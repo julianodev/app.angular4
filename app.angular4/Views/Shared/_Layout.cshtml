@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular 4 with MVC</title>
+    <base href="/">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/preload.min.css">
+    <link rel="stylesheet" href="~/assets/css/plugins.min.css">
+    <link rel="stylesheet" href="~/assets/css/style.light-blue-500.min.css">
+</head>
+<body>
+
+    @RenderBody()
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.8.2/umd/popper.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en"></script>
+    <script src="~/node_modules/core-js/client/shim.min.js"></script>
+    <script src="~/node_modules/zone.js/dist/zone.js"></script>
+    <script src="~/node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="~/node_modules/systemjs/dist/system.src.js"></script>
+    <script src="~/systemjs.config.js"></script>
+    <script>
+
+        async function loadPlugins() {
+
+            await System.import('plugins')
+                .then(function () {
+                    console.log('script plugins was load');
+                })
+                .catch(function (message) {
+                    console.error(message);
+                });
+        }
+
+        function loadTemplate() {
+            System.import('template').then(function () {
+                console.log('script template was load');
+            }).catch(function (message) {
+                console.error(message);
+            });
+        }
+
+        async function loadAngular() {
+            await System.import('app')
+                .then(function () {
+                    console.log('Angular was load');
+                })
+                .catch(function (message) {
+                    console.error(message);
+                });
+        }
+
+        loadAngular()
+            .then(function () {
+                loadPlugins()
+                    .then(function () {
+                        loadTemplate();
+                    });
+            });
+    </script>
+
+
+</body>
+</html>
